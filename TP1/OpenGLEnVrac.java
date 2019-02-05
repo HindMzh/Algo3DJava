@@ -1,3 +1,4 @@
+
 package TP1;
 
 
@@ -126,7 +127,10 @@ public class OpenGLEnVrac {
 
         GL11.glLoadIdentity();                          // Reset The Current Modelview Matrix
 
-        GL11.glTranslatef(0.0f, 0.0f, -6.0f); // Move Into The Screen 5 Units
+        GL11.glTranslatef(0.0f, 0.0f, -8.0f); // Move Into The Screen 8 Units
+        
+        GL11.glPushMatrix(); // le 5 fevrier pour avoir deux cubes, et mémoriser les coordonées
+        
         GL11.glRotatef(xrot, 1.0f, 0.0f, 0.0f); // Rotate On The X Axis
         GL11.glRotatef(yrot, 0.0f, 1.0f, 0.0f); // Rotate On The Y Axis
         GL11.glRotatef(zrot, 0.0f, 0.0f, 1.0f); // Rotate On The Z Axis        
@@ -209,6 +213,124 @@ public class OpenGLEnVrac {
         xrot += 0.001f; // X Axis Rotation
         yrot += 0.02f; // Y Axis Rotation
         zrot += 0.0f; // Z Axis Rotation
+        
+        GL11.glPopMatrix(); //4 fevr pour un cube qui tourne sur lui meme
+        
+        //////// 5 février 2018//////
+        //on applique une translation selon l'axe des X pour que le second cube soit visible
+        GL11.glTranslatef(-3.0f,0.0f,0.0f);
+        //On désactive le mode d'"clairae pour afficher des lignes
+        GL11.glDisable(GL11.GL_LIGHTING);
+        //On affiche le second cube avec des lignes
+        GL11.glBegin(GL11.GL_LINES);
+        GL11.glVertex3f(-1.0f,-1.0f,1.0f);
+        //etc
+        
+        GL11.glBegin(GL11.GL_LINES);
+        // Front Face
+        //GL11.glColor3f(0.5f,0.5f,0.5f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f); // Bottom Left Of The Texture and Quad
+        
+        
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f); // Bottom Right Of The Texture and Quad
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f);
+        
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f); // Top Right Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f);
+        
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f); // Top Left Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f);
+        
+        // Back Face
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f); // Bottom Right Of The Texture and Quad
+        
+        
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f); // Top Right Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f);
+        
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f); // Top Left Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f);
+        
+        GL11.glVertex3f(1.0f, -1.0f, -1.0f); // Bottom Left Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f);
+        
+        // Top Face
+       
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f); // Top Left Of The Texture and Quad
+        
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f); // Bottom Left Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+       
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f); // Bottom Right Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f);
+      
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f); // Top Right Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f);
+        
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f);
+        
+        
+        // Bottom Face
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f); // Top Right Of The Texture and Quad
+       
+        GL11.glVertex3f(1.0f, -1.0f, -1.0f); // Top Left Of The Texture and Quad
+        GL11.glVertex3f(1.0f, -1.0f, -1.0f);
+        
+        
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f); // Bottom Left Of The Texture and Quad
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f); // Bottom Right Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f);
+        
+        // Right face
+        
+        GL11.glVertex3f(1.0f, -1.0f, -1.0f); // Bottom Right Of The Texture and Quad
+        
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f); // Top Right Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, -1.0f);
+        
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f); // Top Left Of The Texture and Quad
+        GL11.glVertex3f(1.0f, 1.0f, 1.0f);
+        
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f); // Bottom Left Of The Texture and Quad
+        GL11.glVertex3f(1.0f, -1.0f, 1.0f);
+        
+        GL11.glVertex3f(1.0f, -1.0f, -1.0f);
+        // Left Face
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f); // Bottom Left Of The Texture and Quad
+      
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f); // Bottom Right Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, -1.0f, 1.0f);
+        
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f); // Top Right Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, 1.0f, 1.0f);
+       
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f); // Top Left Of The Texture and Quad
+        GL11.glVertex3f(-1.0f, 1.0f, -1.0f);
+        
+        GL11.glVertex3f(-1.0f, -1.0f, -1.0f);
+        
+       
+
+        xrot += 0.001f; // X Axis Rotation
+        yrot += 0.02f; // Y Axis Rotation
+        zrot += 0.0f; // Z Axis Rotation
+        
+        
+        
+        
+        GL11.glEnd();
 
         return true;
     }
