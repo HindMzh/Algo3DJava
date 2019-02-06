@@ -33,10 +33,12 @@ public class OpenGLEnVrac {
 
     private boolean light;         // Lighting ON/OFF    
     
-    private float[] lightAmbient = {1.0f,1.0f,1.0f,1.0f};
-    private float[] lightDiffuse = {1.0f,1.0f,1.0f,1.0f};
+    private float[] lightAmbient = {0.0f,0.0f,0.0f,0.0f};
+    private float[] lightDiffuse = {1.0f,0.5f,0.5f,0.0f};
+    //Ajout de la composante spéculaire (en dessous)
+    private float[] lightSpecularComponent = {1.0f,1.0f,1.0f,0.0f};
 
-    private float[] lightPosition = {0.0f,0.0f,5.0f,1.0f};
+    private float[] lightPosition = {0.0f,1000.0f,0.0f,1.0f}; //changer la position de la source lumineuse (elle vient d'en haut)
 
     private boolean filter = false;
     
@@ -327,7 +329,8 @@ public class OpenGLEnVrac {
         yrot += 0.02f; // Y Axis Rotation
         zrot += 0.0f; // Z Axis Rotation
         
-        
+        //On résactive le mode d'éclairae pour afficher des lignes mais pas le cube
+        GL11.glEnable(GL11.GL_LIGHTING);
         
         
         GL11.glEnd();
@@ -391,8 +394,12 @@ public class OpenGLEnVrac {
         FloatBuffer buffPosition = BufferUtils.createFloatBuffer(4).put(lightPosition);
         buffPosition.position(0);
                 
+        FloatBuffer buffSpecular = BufferUtils.createFloatBuffer(4).put(lightSpecularComponent);// Ajout du buffer de la composante spéculaire
+        buffSpecular.position(0);
+        
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_AMBIENT, buffAmbient);
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, buffDiffuse);
+        GL11.glLight(GL11.GL_LIGHT1, GL11.GL_SPECULAR, buffSpecular); // composante spéculaire
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, buffPosition);
         
         GL11.glEnable(GL11.GL_LIGHT1);
